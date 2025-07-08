@@ -437,7 +437,7 @@
             <header>
                 <!-- <h1>🍴 美味餐厅 - 在线点餐</h1> -->
                 <img src="../pic/header.png" 
-                alt="田野的厨房" class="header-image">
+                alt="田野的厨房" class="header-image" loading="lazy">
             </header>
             
             <div class="category" v-for="category in categories" :key="category.name">
@@ -445,7 +445,7 @@
                 <div class="menu-items">
                     <div class="menu-item" v-for="item in category.items" :key="item.id">
                         <div class="featured-badge" v-if="item.isFeatured">招牌</div>
-                        <img :src="item.image" :alt="item.name" class="item-image">
+                        <img :src="item.image" :alt="item.name" class="item-image" loading="lazy">
                         <div class="item-details">
                             <div class="item-name">{{ item.name }}</div>
                             <div class="item-desc">{{ item.description }}</div>
