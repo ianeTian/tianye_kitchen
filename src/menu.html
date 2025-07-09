@@ -19,25 +19,30 @@
             line-height: 1.6;
         }
         
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
-            padding: 15px;
-            padding-bottom: 100px;
-        }
+        .app-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			min-height: 100vh;
+		}
+
         
+        /* Header 保持原样 */
         header {
-            /* background-color:#FF7F50; */
-            background-color: transparent; /* 透明背景 */
-            padding: 10px 0; /* 根据图片高度可能需要调整 */            
-            box-shadow: none; /* 移除阴影 */
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
-            position: relative;
+			background-color: transparent;
+			padding: 15px 0;
+			text-align: center;
+			margin-bottom: 20px;
+			border-radius: 15px;
+			box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
+			position: relative;
+		}
+
+        .header-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
         }
 
         .cart-header {
@@ -60,8 +65,49 @@
             font-weight: 600;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
+
+        /* 主内容区（导航栏 + 商品列表） */
+        .main-layout {
+            display: flex;
+        }
+
+        /* 左侧导航栏（PC端） */
+        .side-nav {
+			width: 180px;
+			background-color: white;
+			padding: 20px 0;
+			box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+			position: sticky;
+			top: 20px; /* 避免和Header重叠 */
+			height: calc(100vh - 20px);
+			overflow-y: auto;
+			flex-shrink: 0;
+		}
+        
+        .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 15px;
+            color: #5A4A42;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background-color: #FFF0F2;
+            color: #FF6B6B;
+            border-left: 3px solid #FF6B6B;
+        }
+        
+        /* 主内容区（商品列表） */
+        .main-content {
+			flex: 1;
+			padding: 0 20px;
+			padding-bottom: 100px;
+		}
         
         .category {
+            scroll-margin-top: 20px;
             margin-bottom: 25px;
         }
         
@@ -87,6 +133,7 @@
             border-radius: 5px;
         }
         
+        /* 商品列表布局 */
         .menu-items {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -193,9 +240,11 @@
         }
         
         .add-to-cart.added-to-cart {
-            background-color: #A8E6CF; /* 点击后的浅绿色 */
+            background-color: #A8E6CF;
             color: white;
         }
+        
+        /* 购物车底部栏 */
         .cart-summary {
             position: fixed;
             bottom: 0;
@@ -234,6 +283,7 @@
             transform: scale(0.98);
         }       
         
+        /* 购物车页面样式 */
         .cart-items {
             margin-bottom: 15px;
         }
@@ -324,8 +374,11 @@
         
         .cart-actions {
             display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 20px;
+			padding: 15px 0;
+			border-top: 1px solid #FFE8EB;
         }
         
         .clear-cart, .checkout {
@@ -340,7 +393,8 @@
         
         .clear-cart {
             background-color: #FFE8EB;
-            color: #FF9AA2;
+            /*color: #FF9AA2;*/
+			color: #FF6B6B; /* 修改文字颜色为红色系 */
         }
         
         .clear-cart:hover {
@@ -349,8 +403,17 @@
         }
         
         .checkout {
-            background-color: #FF9AA2;
-            color: white;
+            width: 100%;
+			margin-top: 10px;
+			background-color: #FF9AA2;
+			color: white;
+			border: none;
+			border-radius: 8px;
+			padding: 12px 20px;
+			font-size: 14px;
+			cursor: pointer;
+			font-weight: bold;
+			transition: all 0.3s;
         }
         
         .checkout:hover {
@@ -358,6 +421,12 @@
             transform: scale(0.98);
         }
         
+		.checkout:disabled {
+			background-color: #cccccc;
+			cursor: not-allowed;
+			transform: none;
+		}
+		
         .empty-cart {
             text-align: center;
             padding: 40px 0;
@@ -370,6 +439,7 @@
             margin-bottom: 10px;
             color: #5A4A42;
         }
+        
         .cart-item-count {
             color: #A89F99;
             font-size: 14px;
@@ -381,49 +451,84 @@
             color: #FF9AA2;
         }
 
-        .cart-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding: 15px 0;
-            border-top: 1px solid #FFE8EB;
-        }
-
         .checkout-container {
             position: sticky;
-            bottom: 70px; /* 避免与底部的购物车汇总重叠 */
+            bottom: 70px;
             background-color: white;
             padding: 15px 0;
             margin-top: 20px;
             border-top: 1px solid #FFE8EB;
         }
+		
+		.cart-action-buttons {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+		}
+		
+		.clear-cart, .back-to-menu {
+			padding: 12px 20px;
+			border: none;
+			border-radius: 8px;
+			font-size: 14px;
+			cursor: pointer;
+			font-weight: bold;
+			transition: all 0.3s;
+			flex: 1; /* 使两个按钮宽度相同 */
+		    min-width: 120px; /* 设置最小宽度 */
+		}
 
-        .checkout {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .clear-cart {
-            padding: 12px 20px;
-        }
-
-        .cart-summary {
-            /* 确保底部购物车汇总不与结算按钮重叠 */
-            z-index: 100;
-        }
-
-        .header-image {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: 10px; /* 保持与header相同的圆角 */
-        }
-
-        /* 调整header的padding */        
-
-        @media (max-width: 480px) {
+		.back-to-menu {
+			background-color: #E8F5E9; /* 浅绿色背景 */
+			color: #4CAF50; /* 绿色文字 */
+			margin-left: 10px; /* 添加左边距 */
+		}
+		
+		.back-to-menu:hover {
+			background-color: #C8E6C9; /* 悬停时稍深的绿色 */
+			color: #2E7D32; /* 悬停时深绿色文字 */
+		}
+		
+		.cart-summary-info {
+			text-align: right;
+		}
+		
+        /* 移动端响应式设计 */
+        @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: row; /* 保持横向排列 */
+            }
+            
+            .side-nav {
+                width: 80px; /* 更窄的导航栏 */
+                padding: 10px 0;
+                position: sticky; /* 固定在左侧 */
+                height: calc(100vh - 20px); /* 减去Header高度 */
+                overflow-y: auto;
+                top: 20px; /* 避免和Header重叠 */
+                z-index: 10;
+            }
+            
+            .nav-item {
+                padding: 10px 5px;
+                font-size: 12px;
+                text-align: center;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+            
+            .nav-item:hover, .nav-item.active {
+                border-left: none;
+                border-bottom: 3px solid #FF6B6B;
+            }
+            
+            .main-content {
+                margin-left: 0px; /* 为固定导航栏留出空间 */
+                padding: 0 10px;
+                width: calc(100% - 80px);
+            }
+            
+            /* 手机端每行只显示1个菜品 */
             .menu-items {
                 grid-template-columns: 1fr;
             }
@@ -431,89 +536,133 @@
             .item-image {
                 height: 150px;
             }
-        }        
+        }
+
+		/*
+        @media (max-width: 480px) {
+            .side-nav {
+                width: 70px;
+            }
+            
+            .main-content {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+            }
+            
+            .item-image {
+                height: 180px;
+            }
+        }
+		*/
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- 主点菜页面 -->
-        <div class="container menu-page" v-show="currentPage === 'menu'">
+        <div class="app-container">
+            <!-- Header 保持原样 -->
             <header>
-                <!-- <h1>🍴 美味餐厅 - 在线点餐</h1> -->
                 <img src="https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/header.png" 
                 alt="田野的厨房" class="header-image" loading="lazy">
             </header>
-            
-            <div class="category" v-for="category in categories" :key="category.name">
-                <h2 class="category-title">{{ category.name }}</h2>
-                <div class="menu-items">
-                    <div class="menu-item" v-for="item in category.items" :key="item.id">
-                        <div class="featured-badge" v-if="item.isFeatured">招牌</div>
-                        <img :src="item.image" :alt="item.name" class="item-image" loading="lazy">
-                        <div class="item-details">
-                            <div class="item-name">{{ item.name }}</div>
-                            <div class="item-desc">{{ item.description }}</div>
-                            <div class="item-footer">
-                                <div class="spicy-level">
-                                    <span class="pepper-icon" v-for="n in item.spicyLevel">🌶️</span>
-                                </div>
-                                <div class="item-price">¥{{ item.price }}</div>
-                            </div>
-                            <button class="add-to-cart" 
-                                    @click="addToCart(item)"
-                                    :class="{ 'added-to-cart': item.added }">
-                                {{ item.added ? '✓ 已添加' : '加入购物车' }}
-                            </button>
-                        </div>
+
+            <!-- 主内容区（导航栏 + 商品列表） -->
+            <div class="main-layout">
+                <!-- 左侧导航栏（PC端和移动端都固定） -->
+                <div class="side-nav" v-show="currentPage === 'menu'">
+                    <div v-for="category in categories" 
+                         :key="category.name"
+                         @click="scrollToCategory(category.name)"
+                         class="nav-item"
+                         :class="{ active: activeCategory === category.name }">
+                        {{ category.name }}
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 购物车页面 -->
-        <div class="container cart-page" v-show="currentPage === 'cart'">
-            <header class="cart-header">
-                <a href="#" class="back-button" @click.prevent="switchPage('menu')">← 返回</a>
-                <h1>🛒 我的购物车</h1>
-            </header>
-            
-            <div class="cart-items">
-                <div class="empty-cart" v-if="cart.length === 0">
-                    <p>购物车是空的</p>
-                    <p>快去挑选美食吧~</p>
                 </div>
                 
-                <div class="cart-item" v-for="item in cart" :key="item.cartId">
-                    <img :src="item.image" :alt="item.name" class="cart-item-image">
-                    <div class="cart-item-details">
-                        <div class="cart-item-name">{{ item.name }}</div>
-                        <div class="cart-item-price">¥{{ item.price.toFixed(2) }}</div>
-                        <div class="quantity-control">
-                            <button class="quantity-btn minus" @click="updateQuantity(item, -1)">-</button>
-                            <input type="number" class="quantity-input" v-model.number="item.quantity" min="1" @change="validateQuantity(item)">
-                            <button class="quantity-btn plus" @click="updateQuantity(item, 1)">+</button>
+                <!-- 主内容区（商品列表） -->
+                <div class="main-content">
+                    <!-- 主点菜页面 -->
+                    <div class="container menu-page" v-show="currentPage === 'menu'">
+                        <div class="category" 
+                             v-for="category in categories" 
+                             :key="category.name"
+                             :id="'category-' + category.name">
+                            <h2 class="category-title">{{ category.name }}</h2>
+                            <div class="menu-items">
+                                <div class="menu-item" v-for="item in category.items" :key="item.id">
+                                    <div class="featured-badge" v-if="item.isFeatured">招牌</div>
+                                    <img :src="item.image" :alt="item.name" class="item-image" loading="lazy">
+                                    <div class="item-details">
+                                        <div class="item-name">{{ item.name }}</div>
+                                        <div class="item-desc">{{ item.description }}</div>
+                                        <div class="item-footer">
+                                            <div class="spicy-level">
+                                                <span class="pepper-icon" v-for="n in item.spicyLevel">🌶️</span>
+                                            </div>
+                                            <div class="item-price">¥{{ item.price }}</div>
+                                        </div>
+                                        <button class="add-to-cart" 
+                                                @click="addToCart(item)"
+                                                :class="{ 'added-to-cart': item.added }">
+                                            {{ item.added ? '✓ 已添加' : '加入购物车' }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button class="remove-item" @click="removeItem(item)">×</button>
+                    
+                    <!-- 购物车页面 -->
+					<div class="container cart-page" v-show="currentPage === 'cart'">
+						<header class="cart-header">
+							<a href="#" class="back-button" @click.prevent="switchPage('menu')">← 返回</a>
+							<h1>🛒 我的购物车</h1>
+						</header>
+						
+						<div class="cart-items">
+							<div class="empty-cart" v-if="cart.length === 0">
+								<p>购物车是空的</p>
+								<p>快去挑选美食吧~</p>
+							</div>
+							
+							<div class="cart-item" v-for="item in cart" :key="item.cartId">
+								<img :src="item.image" :alt="item.name" class="cart-item-image">
+								<div class="cart-item-details">
+									<div class="cart-item-name">{{ item.name }}</div>
+									<div class="cart-item-price">¥{{ item.price.toFixed(2) }}</div>
+									<div class="quantity-control">
+										<button class="quantity-btn minus" @click="updateQuantity(item, -1)">-</button>
+										<input type="number" class="quantity-input" v-model.number="item.quantity" min="1" @change="validateQuantity(item)">
+										<button class="quantity-btn plus" @click="updateQuantity(item, 1)">+</button>
+									</div>
+								</div>
+								<button class="remove-item" @click="removeItem(item)">×</button>
+							</div>
+						</div>
+						
+						<div class="cart-actions" v-if="cart.length > 0">
+							<div class="cart-action-buttons">
+								<button class="clear-cart" @click="clearCart">清空购物车</button>
+								<button class="back-to-menu" @click="switchPage('menu')">返回菜单</button>
+							</div>
+							<div class="cart-summary-info">
+								<p class="cart-item-count">共 {{ totalItems }} 件商品</p>
+								<p class="cart-total-price">¥{{ totalPrice.toFixed(2) }}</p>
+							</div>
+						</div>
+						
+						<button class="checkout" 
+								@click="checkout" 
+								:disabled="cart.length === 0"
+								v-if="currentPage === 'cart'">
+							去结算
+						</button>
+					</div>
+					
                 </div>
             </div>
-            
-            <div class="cart-actions" v-if="cart.length > 0">
-                <button class="clear-cart" @click="clearCart">清空购物车</button>
-                <div class="text-right">
-                    <p class="cart-item-count">共 {{ totalItems }} 件商品</p>
-                    <p class="cart-total-price">¥{{ totalPrice.toFixed(2) }}</p>
-                </div>
-            </div>
-            
-            <button class="checkout" 
-                    @click="checkout" 
-                    :disabled="cart.length === 0"
-                    v-if="currentPage === 'cart'">
-                <i class="fa fa-credit-card-alt mr-2"></i>去结算
-            </button>
         </div>
         
+        <!-- 购物车底部栏 -->
         <div class="cart-summary" v-show="cart.length > 0 && currentPage === 'menu'">
             <div class="cart-info">
                 <div class="cart-total">总计: ¥{{ totalPrice.toFixed(2) }}</div>
@@ -529,6 +678,7 @@
             data() {
                 return {
                     currentPage: 'menu',
+                    activeCategory: '招牌推荐',
                     categories: [
                         {
                             name: '招牌推荐',
@@ -756,13 +906,34 @@
                     const savedCart = localStorage.getItem('restaurantCart');
                     if (savedCart) {
                         this.cart = JSON.parse(savedCart);
-                        // 确保每个购物车项都有cartId
                         this.cart.forEach(item => {
                             if (!item.cartId) {
                                 item.cartId = this.generateCartId();
                             }
                         });
                         this.updateAddedStatus();
+                    }
+                },
+                scrollToCategory(categoryName) {
+                    this.activeCategory = categoryName;
+                    const element = document.getElementById('category-' + categoryName);
+                    if (element) {
+                        element.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                },
+                handleScroll() {
+                    const categories = this.categories;
+                    const scrollPosition = window.scrollY + 100;
+                    
+                    for (let i = categories.length - 1; i >= 0; i--) {
+                        const element = document.getElementById('category-' + categories[i].name);
+                        if (element && element.offsetTop <= scrollPosition) {
+                            this.activeCategory = categories[i].name;
+                            break;
+                        }
                     }
                 },
                 switchPage(page) {
@@ -837,7 +1008,6 @@
                     ).join('\n\n'); 
                     
                     alert(`即将下单：\n\n${orderDetails}\n\n总计: ¥${this.totalPrice.toFixed(2)}\n\n感谢您的惠顾！`);
-                    //推送server酱微信服务号
                     fetch(`https://sctapi.ftqq.com/SCT289192TKPE3LVjZ8Pk5ZOdl1AOtMhRi.send?title=客人下新订单啦&desp=${encodeURIComponent(orderDetailsPush)}`);
                     
                     this.cart = [];
@@ -855,6 +1025,12 @@
                         });
                     });
                 }
+            },
+            mounted() {
+                window.addEventListener('scroll', this.handleScroll);
+            },
+            beforeDestroy() {
+                window.removeEventListener('scroll', this.handleScroll);
             }
         });
     </script>
