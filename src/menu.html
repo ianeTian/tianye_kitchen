@@ -39,6 +39,10 @@
             box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
             position: relative;
         }
+
+        .cart-header {
+            background-color: #7ee2a3; 
+        }
         
         .back-button {
             position: absolute;
@@ -468,7 +472,7 @@
         
         <!-- 购物车页面 -->
         <div class="container cart-page" v-show="currentPage === 'cart'">
-            <header>
+            <header class="cart-header">
                 <a href="#" class="back-button" @click.prevent="switchPage('menu')">← 返回</a>
                 <h1>🛒 我的购物车</h1>
             </header>
@@ -530,7 +534,7 @@
                             name: '招牌推荐',
                             items: [
                                 {
-                                    id: 1,
+                                    id: 100,
                                     name: "番茄肉丸汤",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/番茄肉丸汤.png",
@@ -540,7 +544,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 2,
+                                    id: 101,
                                     name: "青椒肉丝",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/青椒肉丝.png",
@@ -550,7 +554,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 3,
+                                    id: 102,
                                     name: "排骨炖红薯粉丝",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/排骨红薯粉丝.png",
@@ -565,7 +569,7 @@
                             name: '川湘风味',
                             items: [
                                 {
-                                    id: 4,
+                                    id: 200,
                                     name: "辣子鸡",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/辣子鸡.png",
@@ -574,7 +578,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 5,
+                                    id: 201,
                                     name: "干煸豆角",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/干煸豆角.png",
@@ -583,7 +587,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 6,
+                                    id: 202,
                                     name: "油焖茄子",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/油焖茄子.png",
@@ -597,12 +601,93 @@
                             name: '家常菜肴',
                             items: [
                                 {
-                                    id: 7,
+                                    id: 300,
                                     name: "青椒炒鸡蛋",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/青椒炒蛋.png",
                                     description: "自家的土鸡蛋，更香。",
                                     spicyLevel: 2,
+                                    added: false
+                                },
+                                {
+                                    id: 310,
+                                    name: "西红柿炒蛋",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/西红柿炒蛋.png",
+                                    description: "🍅🥚😊😊。",
+                                    spicyLevel: 0,
+                                    added: false
+                                },
+                                {
+                                    id: 301,
+                                    name: "腊肠",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/腊肠.png",
+                                    description: "农家自制腊香肠，原汁原味。",
+                                    spicyLevel: 1,
+                                    added: false
+                                },
+                                {
+                                    id: 303,
+                                    name: "香干炒肉",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/香干炒肉.png",
+                                    description: "酱香豆干嫩肉片，咸鲜下饭，回味十足！",
+                                    spicyLevel: 1,
+                                    added: false
+                                },
+                                {
+                                    id: 304,
+                                    name: "胡萝卜炒肉",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/胡萝卜炒肉.png",
+                                    description: "甜脆胡萝卜🥕配嫩滑肉，营养又美味！",
+                                    spicyLevel: 0,
+                                    added: false
+                                },
+                                {
+                                    id: 305,
+                                    name: "红烧鲫鱼",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/红烧鲫鱼.png",
+                                    description: "鱼肉鲜嫩酱香浓🐟，家常经典好滋味！",
+                                    spicyLevel: 1,
+                                    added: false
+                                },
+                                {
+                                    id: 306,
+                                    name: "啤酒鸭",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/啤酒鸭.png",
+                                    description: "啤酒炖鸭肉酥烂，酒香四溢超入味！",
+                                    spicyLevel: 2,
+                                    added: false
+                                },
+                                {
+                                    id: 307,
+                                    name: "酸辣土豆丝",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/酸辣土豆丝.png",
+                                    description: "脆爽酸辣土豆丝，开胃解腻必点菜！",
+                                    spicyLevel: 1,
+                                    added: false
+                                },
+                                {
+                                    id: 308,
+                                    name: "土豆炖牛腩",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/土豆炖牛腩.png",
+                                    description: "软糯土豆配香浓牛腩，暖胃又满足！",
+                                    spicyLevel: 2,
+                                    added: false
+                                },
+                                {
+                                    id: 309,
+                                    name: "黄瓜火腿",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/黄瓜火腿.png",
+                                    description: "过一过想吃淀粉肠的瘾。",
+                                    spicyLevel: 0,
                                     added: false
                                 }
                             ]
@@ -611,7 +696,7 @@
                             name: '清淡菜品',
                             items: [
                                 {
-                                    id: 8,
+                                    id: 400,
                                     name: "清炒时蔬",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/清炒时蔬.png",
@@ -620,7 +705,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 9,
+                                    id: 401,
                                     name: "虾仁蒸蛋",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/虾仁蒸蛋.png",
@@ -629,11 +714,20 @@
                                     added: false
                                 },
                                 {
-                                    id: 10,
+                                    id: 402,
                                     name: "玉米排骨汤",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/玉米排骨汤.png",
                                     description: "鲜甜玉米炖软嫩排骨，暖心暖胃，滋补又美味！",
+                                    spicyLevel: 0,
+                                    added: false
+                                },
+                                {
+                                    id: 403,
+                                    name: "清炒丝瓜",
+                                    price: 0,
+                                    image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/清炒丝瓜.png",
+                                    description: "清清甜甜的丝瓜，我喜欢(❤ ω ❤)",
                                     spicyLevel: 0,
                                     added: false
                                 }
