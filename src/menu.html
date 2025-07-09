@@ -550,7 +550,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 2,
+                                    id: 3,
                                     name: "排骨炖红薯粉丝",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/排骨红薯粉丝.png",
@@ -565,7 +565,7 @@
                             name: '川湘风味',
                             items: [
                                 {
-                                    id: 3,
+                                    id: 4,
                                     name: "辣子鸡",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/辣子鸡.png",
@@ -574,7 +574,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 4,
+                                    id: 5,
                                     name: "干煸豆角",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/干煸豆角.png",
@@ -583,7 +583,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 5,
+                                    id: 6,
                                     name: "油焖茄子",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/油焖茄子.png",
@@ -597,7 +597,7 @@
                             name: '家常菜肴',
                             items: [
                                 {
-                                    id: 6,
+                                    id: 7,
                                     name: "青椒炒鸡蛋",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/青椒炒蛋.png",
@@ -611,7 +611,7 @@
                             name: '清淡菜品',
                             items: [
                                 {
-                                    id: 6,
+                                    id: 8,
                                     name: "清炒时蔬",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/清炒时蔬.png",
@@ -620,7 +620,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 7,
+                                    id: 9,
                                     name: "虾仁蒸蛋",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/虾仁蒸蛋.png",
@@ -629,7 +629,7 @@
                                     added: false
                                 },
                                 {
-                                    id: 7,
+                                    id: 10,
                                     name: "玉米排骨汤",
                                     price: 0,
                                     image: "https://tianyepic-1368290920.cos.ap-shanghai.myqcloud.com/玉米排骨汤.png",
@@ -744,7 +744,7 @@
                     
                     alert(`即将下单：\n\n${orderDetails}\n\n总计: ¥${this.totalPrice.toFixed(2)}\n\n感谢您的惠顾！`);
                     //推送server酱微信服务号
-                    fetch(`https://sctapi.ftqq.com/SCT289192TKPE3LVjZ8Pk5ZOdl1AOtMhRi.send?title=新订单&desp=${encodeURIComponent(orderDetailsPush)}`);
+                    fetch(`https://sctapi.ftqq.com/SCT289192TKPE3LVjZ8Pk5ZOdl1AOtMhRi.send?title=客人下新订单啦&desp=${encodeURIComponent(orderDetailsPush)}`);
                     
                     this.cart = [];
                     this.updateAddedStatus();
