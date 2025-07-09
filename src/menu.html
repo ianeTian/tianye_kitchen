@@ -737,8 +737,14 @@
                     const orderDetails = this.cart.map(item => 
                         `${item.name} × ${item.quantity} = ¥${(item.price * item.quantity).toFixed(2)}`
                     ).join('\n');
+
+                    const orderDetailsPush = this.cart.map(item => 
+                        `${item.name} × ${item.quantity}`
+                    ).join('\n\n'); 
                     
                     alert(`即将下单：\n\n${orderDetails}\n\n总计: ¥${this.totalPrice.toFixed(2)}\n\n感谢您的惠顾！`);
+                    //推送server酱微信服务号
+                    fetch(`https://sctapi.ftqq.com/SCT289192TKPE3LVjZ8Pk5ZOdl1AOtMhRi.send?title=新订单&desp=${encodeURIComponent(orderDetailsPush)}`);
                     
                     this.cart = [];
                     this.updateAddedStatus();
