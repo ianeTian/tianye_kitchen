@@ -93,7 +93,7 @@
             border-left: 3px solid transparent;
         }
         
-        .nav-item:hover, .nav-item.active {
+        .nav-item:active, .nav-item.active {
             background-color: #FFF0F2;
             color: #FF6B6B;
             border-left: 3px solid #FF6B6B;
@@ -525,11 +525,12 @@
                 border-bottom: 3px solid transparent;
             }
             
-            /* .nav-item:hover, .nav-item.active {
-                border-left: none;
-                border-bottom: 3px solid #FF6B6B;                
-            } */
-            
+            .nav-item:active, .nav-item.active {
+                /* border-left: none;
+                border-bottom: 3px solid #FF6B6B;*/
+                border-left: 4px solid #FF6B6B;
+            }        
+
             .main-content {
                 margin-left: 0px; /* 为固定导航栏留出空间 */
                 margin-bottom: 60px;
@@ -547,8 +548,16 @@
             }
         }
 
-		/*
-        @media (max-width: 480px) {
+        /* PC 端：保留 hover 效果  .nav-item:hover, .nav-item.active hover效果导致手机端点击导航后划走，原导航位置还有高亮，解决方法之一是设备类型检测 + 精准样式控制*/
+        /* @media (min-width: 769px) {
+            .nav-item:hover {
+                background-color: #FFF0F2;
+                color: #FF6B6B;
+                border-left: 3px solid #FF6B6B;
+            }
+        } */
+		
+        /* @media (max-width: 480px) {
             .side-nav {
                 width: 70px;
             }
@@ -561,8 +570,8 @@
             .item-image {
                 height: 180px;
             }
-        }
-		*/
+        } */
+		
     </style>
 </head>
 <body>
@@ -1079,13 +1088,14 @@
                     }
                 },
                 handleScroll() {
+                    
                     const categories = this.categories;
                     const scrollPosition = window.scrollY + 100;
                     
                     for (let i = categories.length - 1; i >= 0; i--) {
                         const element = document.getElementById('category-' + categories[i].name);
                         if (element && element.offsetTop <= scrollPosition) {
-                            this.activeCategory = categories[i].name;
+                            this.activeCategory = categories[i].name;                            
                             break;
                         }
                     }
