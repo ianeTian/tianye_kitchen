@@ -97,7 +97,7 @@
             background-color: #FFF0F2;
             color: #FF6B6B;
             border-left: 3px solid #FF6B6B;
-        }
+        }        
         
         /* 主内容区（商品列表） */
         .main-content {
@@ -525,13 +525,14 @@
                 border-bottom: 3px solid transparent;
             }
             
-            .nav-item:hover, .nav-item.active {
+            /* .nav-item:hover, .nav-item.active {
                 border-left: none;
-                border-bottom: 3px solid #FF6B6B;
-            }
+                border-bottom: 3px solid #FF6B6B;                
+            } */
             
             .main-content {
                 margin-left: 0px; /* 为固定导航栏留出空间 */
+                margin-bottom: 60px;
                 padding: 0 10px;
                 width: calc(100% - 80px);
             }
@@ -1110,9 +1111,9 @@
                     }
                     
                     item.added = true;
-                    setTimeout(() => {
-                        item.added = false;
-                    }, 1000);
+                    // setTimeout(() => {
+                    //     item.added = false;
+                    // }, 1000);
                     
                     this.saveCart();
                 },
